@@ -1,42 +1,38 @@
 require 'spec_helper'
 
 describe "StaticPages" do
-  describe "Home page" do
-    it "should have the content sample app" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      visit '/static_pages/home'
-      expect(page).to have_content('Joey Rosztoczy\'s Blog')
-    end
+  subject { page }
 
-    it "should have the right title" do 
-    	visit '/static_pages/home'
-    	expect(page).to have_title("Joey Rosztoczy's Blog | Home")
-    end
+  describe "Home page" do
+    before { visit root_path }
+
+    it { should have_content('Home') }
+    it { should have_title("Joey Rosztoczy's Blog | Home") }
   end
+
 
   describe "Help page" do
 
-    it "should have the content 'Help'" do
-      visit '/static_pages/help'
-      expect(page).to have_content('Help')
-    end
+    before { visit help_path}
 
-    it "should have the right title" do 
-    	visit '/static_pages/help'
-    	expect(page).to have_title("Joey Rosztoczy's Blog | Help")
-    end
+    it { should have_content('Help') }
+    it { should have_title("Joey Rosztoczy's Blog | Help") }
+
   end
 
-  describe "About page" do 
+  describe "About page" do
 
-  	it "should have the content 'About us'" do 
-  		visit '/static_pages/about'
-  		expect(page).to have_content('About us')
-  	end
+    before { visit about_path }
 
-  	it "should have the right title" do 
-    	visit '/static_pages/about'
-    	expect(page).to have_title("Joey Rosztoczy's Blog | About")
-    end
+    it { should have_content('About us') }
+    it { should have_title("Joey Rosztoczy's Blog | About") }
+  end
+
+  describe "Contact page" do
+
+    before { visit contact_path }
+
+    it {should have_content('Contact')}
   end
 end
+
